@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProductCategory.Business.Models.Category>
+
+@{
+    ViewBag.Title = "Category List";
+}
+
+<div class="container-notifications">
+    @Html.SuccessNotification()
+</div>
+
+<h2>Category List</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-th-large" aria-hidden="true" style="margin-right: 4px;"></span>Categories</div>
+    <div class="panel-body">
+        <div class="col-lg-12" style="padding: 12px;">
+            <div class="pull-right">
+                <a href="@Url.Action("Create")" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right: 4px;"></span>Create New Category
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-12" style="margin-top: 20px ; overflow-x: scroll">
+            <table id="categories" class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
